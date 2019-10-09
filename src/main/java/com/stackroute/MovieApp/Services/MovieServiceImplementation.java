@@ -47,4 +47,10 @@ public class MovieServiceImplementation implements MovieService {
         Optional<Movie> movie = movieRepository.findById(id);
             return movie;
     }
+
+    @Override
+    public List<Movie> getByName(String title) {
+        List<Movie> id = movieRepository.findTitleByName(title);
+        return id;
+    }
 }

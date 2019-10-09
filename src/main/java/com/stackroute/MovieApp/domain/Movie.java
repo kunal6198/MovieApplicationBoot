@@ -13,6 +13,8 @@ public class Movie {
     private int vote_count;
     private String release_date;
 
+    public Movie(){}
+
     public Movie(String title, String overview, int id, int vote_count, String release_date) {
         this.title = title;
         this.overview = overview;
