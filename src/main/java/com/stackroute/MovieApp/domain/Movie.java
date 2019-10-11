@@ -22,6 +22,7 @@ public class Movie {
     private int vote_count;
     private String release_date;
 
+
 //    public Movie(int i, String title1, int id1, String date1){}
 //
 //    public Movie(String title, String overview, int id, int vote_count, String release_date) {
@@ -82,4 +83,5 @@ public class Movie {
 //                ", release_date='" + release_date + '\'' +
 //                '}';
 //    }
+
 }

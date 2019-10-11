@@ -79,8 +79,14 @@ public class MovieController {
     }
 
     @GetMapping("/titles/{title}")
-    public ResponseEntity<List<Movie>> getByName(@RequestParam   String title) {
-        List<Movie> movie = movieService.getByName(title);
-        return new ResponseEntity<List<Movie>>(movie, HttpStatus.OK);
+    public ResponseEntity<?> getByName(@RequestParam   String title) {
+        try {
+            List<Movie> movie = movieService.getByName(title);
+
+            return new ResponseEntity<List<Movie>>(movie, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+        }
     }
 }
