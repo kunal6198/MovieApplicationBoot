@@ -2,30 +2,43 @@ package com.stackroute.MovieApp.Controller;
 
 import com.stackroute.MovieApp.Services.MovieService;
 import com.stackroute.MovieApp.domain.Movie;
+import org.hibernate.cfg.Environment;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(value = "api/v1")
 public class MovieController {
     MovieService movieService;
 
-    public MovieController (MovieService movieService){
-        this.movieService=movieService;
+    Environment environment;
+
+    private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    @Qualifier(value = "dummy")
+    public void setMovieService(MovieService movieService) {this.movieService=movieService;
     }
 
-    @PostMapping("/saveMovie")
+    @PostMapping("/saveNewMovie")
     public ResponseEntity<?> saveMovie(@RequestBody Movie movie){
         ResponseEntity responseEntity;
         try{
+            logger.info("Movie = "+movie);
+
             movieService.saveMovie(movie);
             responseEntity = new ResponseEntity<String>("Successfully Created", HttpStatus.CREATED);
         }
         catch (Exception e){
+
             responseEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
         }
         return responseEntity;
@@ -36,6 +49,7 @@ public class MovieController {
     public ResponseEntity<?> getAllMovies(){
         ResponseEntity responseEntity;
         try {
+            logger.info("All movies = "+movieService.getAllMovies());
             responseEntity= new ResponseEntity<List<Movie>>(movieService.getAllMovies(), HttpStatus.OK);
         }
         catch (Exception e)

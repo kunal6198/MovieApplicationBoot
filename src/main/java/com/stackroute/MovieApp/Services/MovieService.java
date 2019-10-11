@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MovieService {
-    public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException;
+    public Movie saveNewMovie(Movie movie) throws MovieAlreadyExistsException;
     public List<Movie> getAllMovies() throws MovieNotFoundException;
     public boolean deleteMovie(int id) throws MovieNotFoundException;
     public Movie updateMovie(Movie movie , int id) throws MovieNotFoundException;

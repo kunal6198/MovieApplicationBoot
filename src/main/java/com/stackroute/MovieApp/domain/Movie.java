@@ -23,7 +23,8 @@ public class Movie {
     private String release_date;
 
 
-//    public Movie(int i, String title1, int id1, String date1){}
+    public Movie(String title, int id, String release_date) {
+    }
 //
 //    public Movie(String title, String overview, int id, int vote_count, String release_date) {
 //        this.title = title;
